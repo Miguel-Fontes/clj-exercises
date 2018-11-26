@@ -98,9 +98,16 @@
           (eliminate-consec-dups (cons y xs))
           (cons x (eliminate-consec-dups (cons y xs))))))))
 
-;P09 (**) Pack consecutive duplicates of list elements into sublists.
-;If a list contains repeated elements they should be placed in separate sublists.
-;
-;Example:
-;* (pack '(a a a a b c c a a d e e e e))
-;((A A A A) (B) (C C) (A A) (D) (E E E E))
+(defn pack-consec-dups
+  "P09 (**) Pack consecutive duplicates of list elements into sublists.
+   If a list contains repeated elements they should be placed in separate sublists.
+
+   Example:
+   * (pack '(a a a a b c c a a d e e e e))
+   ((A A A A) (B) (C C) (A A) (D) (E E E E))"
+  [sequence]
+  (if (or (nil? sequence) (empty? sequence))
+    ()
+    (let [x (first sequence)]
+      (cons (take-while #(= x %) sequence) (pack-consec-dups (drop-while #(= x %) sequence))))))
+

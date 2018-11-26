@@ -70,7 +70,14 @@
     (is (= "abacd" (join (eliminate-consec-dups "aabbacccd"))))
     (is (= "abcec" (join (eliminate-consec-dups "aaaaabbceec"))))))
 
+(deftest pack-consec-dups-test
+  (testing "pack consecutive duplicates"
+    (is (= [] (pack-consec-dups [])))
+    (is (= [[1]] (pack-consec-dups [1])))
+    (is (= [[1 1] [2] [3]] (pack-consec-dups [1 1 2 3]))))
 
+  (testing "pack consecutive string duplicates"
+    (is (= '((a a a a) (b) (c c) (a a) (d) (e e e e)) (pack-consec-dups '(a a a a b c c a a d e e e e))))))
 
 
 
