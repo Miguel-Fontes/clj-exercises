@@ -79,7 +79,12 @@
   (testing "pack consecutive string duplicates"
     (is (= '((a a a a) (b) (c c) (a a) (d) (e e e e)) (pack-consec-dups '(a a a a b c c a a d e e e e))))))
 
-
+(deftest encode-test
+  (testing "length encode a string list"
+    (is (= () (encode "")))
+    (is (= '((1 \a)) (encode "a")))
+    (is (= '((4 \a) (2 \b) (3 \c) (1 \d)) (encode "aaaabbcccd")))
+    ))
 
 
 
